@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
+import { fetchAllBooks } from './store/actions';
 
 function App() {
+  const dispatch = useDispatch();
+  // const { books } = useSelector((state) => state);
+
+  useEffect(() => {
+    const url = 'https://www.example.com';
+    dispatch(fetchAllBooks(url));
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Hi Ramin!</h1>
+      {/* <p>{books}</p> */}
     </div>
   );
 }
