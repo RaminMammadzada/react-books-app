@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/reducers';
-import Book from './Book';
+import { RootState } from '../../store/reducers';
+import Book from '../Book/Book';
+import './BookList.scss';
 
 const BookList = () => {
   const { books } = useSelector((state: RootState) => state);
@@ -9,7 +10,7 @@ const BookList = () => {
   console.log(books)
 
   return (
-    <div>
+    <div className='block'>
       <Book book_id={101}/>
       <Book book_id={202}/>
       <Book book_id={303}/>

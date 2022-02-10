@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import './App.css';
-import Books from './components/Books';
+import AppRoutes from './AppRoutes';
 import { fetchAllBooks } from './store/actions';
 
 function App() {
@@ -15,9 +15,7 @@ function App() {
 
   return (
     <div>
-      <h1>Hi Ramin!</h1>
-      {/* <p>{books}</p> */}
-      <Books />
+      <AppRoutes />
     </div>
   );
 }
