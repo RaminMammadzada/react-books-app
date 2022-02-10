@@ -1,12 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/reducers';
+import BookList from '../BookList/BookList';
 import './BookmarksPage.scss';
-// import BookList from '../containers/BookList';
 
 const BookmarksPage = () => {
+  const { bookmarks } = useSelector((state: RootState) => state);
   return (
     <div className="block">
-      {/* <BookList /> */}
-      <h1>boookmarked book list will be here</h1>
+      <BookList books={bookmarks}/>
     </div>
   );
 }

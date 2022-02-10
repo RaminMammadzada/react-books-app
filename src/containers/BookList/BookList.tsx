@@ -1,19 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/reducers';
 import Book from '../Book/Book';
 import './BookList.scss';
 
-const BookList = () => {
-  const { books } = useSelector((state: RootState) => state);
+const BookList = ({books}: any) => {
 
   console.log(books)
 
   return (
     <div className='block'>
       {
-        books.map((book) => {
-          return <Book book={book}/>
+        books.map((book: any) => {
+          return <Book key={`${book.publishedYear}-${book.title.substring(0,5)}`} book={book}/>
         })
       }
     </div>
