@@ -1,12 +1,11 @@
 import React from 'react';
-// import BookList from '../containers/BookList';
+import BookList from '../BookList/BookList';
 import './BooksPage.scss';
 
 const BooksPage = () => {
   return (
     <div className='block'>
-      {/* <BookList /> */}
-      <h1>book list here</h1>
+      <BookList />
     </div>
   );
 }

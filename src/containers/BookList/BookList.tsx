@@ -11,16 +11,11 @@ const BookList = () => {
 
   return (
     <div className='block'>
-      <Book book_id={101}/>
-      <Book book_id={202}/>
-      <Book book_id={303}/>
-      <Book book_id={404}/> 
-      <Book book_id={505}/> 
-      {/* {
+      {
         books.map((book) => {
-          <Book book_id={101}/>
+          return <Book book={book}/>
         })
-      } */}
+      }
     </div>
   );
   
