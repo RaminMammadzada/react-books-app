@@ -1,7 +1,7 @@
 const googleApiUrl = 'https://www.googleapis.com/books/v1/volumes?q='
 const bookmarksApi = 'http://localhost:4000'
 
-const getBooks = async(query: any) => {
+const getBooksAsync = async(query: any) => {
     const response = await fetch(
         `${googleApiUrl}${query}`,
         {
@@ -11,7 +11,7 @@ const getBooks = async(query: any) => {
     return response.json()
 };
 
-const getAllBookmarks = async() => {
+const getAllBookmarksAsync = async() => {
     const response = await fetch(
         `${bookmarksApi}/books`,
         {
@@ -24,14 +24,19 @@ const getAllBookmarks = async() => {
     return response.json();
 };
 
-const saveBook = async(data: any) => {
+const addBookmarkAsync = async(data: any) => {
+    console.log('iside addBookmarkAsync: ', JSON.stringify(data));
     const response = await fetch(
-        `${bookmarksApi}`,
+        `${bookmarksApi}/books`,
         {
             method: 'POST',
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         }
     );
+    console.log('just response: ', response);
     return response.json()
 };
 
@@ -54,8 +59,8 @@ const saveBook = async(data: any) => {
 //   };
   
 export {
-    getBooks,
-    saveBook,
-    getAllBookmarks
+    getBooksAsync,
+    addBookmarkAsync,
+    getAllBookmarksAsync
 };
 

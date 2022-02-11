@@ -10,7 +10,6 @@ function App() {
   useEffect(() => {
     dispatch(fetchAllBooks());
     dispatch(fetchAllBookmarks());
-
   })
 
   return (

@@ -7,9 +7,23 @@ import './BooksPage.scss';
 const BooksPage = () => {
   const { books } = useSelector((state: RootState) => state);
   
+  const getSquizedBookData = () => {
+    console.log(books)
+    const mappedBooks = books.map((book) => (
+      {
+        title: book.volumeInfo.title,
+        author: book.volumeInfo.authors[0],
+        publishedYear: book.volumeInfo.publishedDate
+      }
+    ));
+    return mappedBooks;
+  }
+
   return (
     <div className='block'>
-      <BookList books={books.map((book) => ({title: book.volumeInfo.title, publishedYear: book.volumeInfo.publishedDate}))}/>
+      <BookList
+        books={getSquizedBookData()}
+      />
     </div>
   );
 }

@@ -3,7 +3,8 @@
 //     payload: url
 // });
 
-import { getAllBookmarks, getBooks } from "../../util/api";
+import { Book } from "../../interfaces/Book";
+import { getAllBookmarksAsync, getBooksAsync, addBookmarkAsync } from "../../util/api";
 
 export const setAllBooks = (allBooks: any) => ({
     type: 'ALL_BOOKS',
@@ -18,7 +19,7 @@ export const setAllBookmarks = (allBookmarks: any) => ({
 export function fetchAllBooks() {
 
     return function thunk(dispatch: Function) {
-      getBooks('javascript')
+      getBooksAsync('javascript')
         .then((response) => {
           dispatch(setAllBooks(response.items));
         })
@@ -29,10 +30,21 @@ export function fetchAllBooks() {
 export function fetchAllBookmarks() {
 
   return function thunk(dispatch: Function) {
-    getAllBookmarks()
+    getAllBookmarksAsync()
       .then((response) => {
         console.log("HERE: ", response)
         dispatch(setAllBookmarks(response));
+      })
+      .catch((error) => console.log('Error: ', error.message));
+  };
+};
+
+export function addBookmark(book: Book) {
+
+  return function thunk(dispatch: Function) {
+    addBookmarkAsync(book)
+      .then((response) => {
+        fetchAllBookmarks();
       })
       .catch((error) => console.log('Error: ', error.message));
   };
