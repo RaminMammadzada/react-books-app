@@ -9,9 +9,13 @@ const BookList = ({books}: any) => {
   return (
     <div className='block'>
       {
-        books.map((book: any) => {
-          return <Book key={`${book.publishedYear}-${book.title.substring(0,5)}`} book={book}/>
-        })
+        books.length === 0
+        ?
+          <h1>Type something to search</h1>
+        :
+          books.map((book: any) => {
+            return <Book book={book}/>
+          })
       }
     </div>
   );

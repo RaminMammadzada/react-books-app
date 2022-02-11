@@ -16,14 +16,21 @@ export const setAllBookmarks = (allBookmarks: any) => ({
   payload: allBookmarks,
 });
 
-export function fetchAllBooks() {
+export const setSearchQuery = (query: string) => ({
+  type: 'SEARCH_QUERY',
+  payload: query,
+});
+
+export function fetchAllBooks(query: string) {
 
     return function thunk(dispatch: Function) {
-      getBooksAsync('javascript')
+      if ( query.toString() !== '' ) {
+        getBooksAsync(query.toString())
         .then((response) => {
           dispatch(setAllBooks(response.items));
         })
         .catch((error) => console.log('Error: ', error.message));
+      }
     };
 };
 

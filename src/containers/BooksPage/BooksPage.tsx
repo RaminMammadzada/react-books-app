@@ -1,17 +1,18 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Search from '../../components/Search/Search';
 import { fetchAllBooks } from '../../store/actions';
 import { RootState } from '../../store/reducers';
 import BookList from '../BookList/BookList';
 import './BooksPage.scss';
 
 const BooksPage = () => {
-  const { books } = useSelector((state: RootState) => state);
+  const { books, searchQuery } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
 
   useLayoutEffect(() => {
-    dispatch(fetchAllBooks());
-  }, [dispatch])
+    dispatch(fetchAllBooks(searchQuery));
+  }, [searchQuery, dispatch])
 
   
   const getSquizedBookData = () => {
@@ -19,7 +20,7 @@ const BooksPage = () => {
     const mappedBooks = books.map((book) => (
       {
         title: book.volumeInfo.title,
-        author: book.volumeInfo.authors[0],
+        author: 'dsadas',
         publishedYear: book.volumeInfo.publishedDate
       }
     ));
@@ -28,6 +29,7 @@ const BooksPage = () => {
 
   return (
     <div className='block'>
+      <Search />
       <BookList
         books={getSquizedBookData()}
       />
@@ -36,3 +38,4 @@ const BooksPage = () => {
 }
 
 export default BooksPage;
+
