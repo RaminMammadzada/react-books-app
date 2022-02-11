@@ -1,11 +1,18 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useLayoutEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAllBooks } from '../../store/actions';
 import { RootState } from '../../store/reducers';
 import BookList from '../BookList/BookList';
 import './BooksPage.scss';
 
 const BooksPage = () => {
   const { books } = useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
+
+  useLayoutEffect(() => {
+    dispatch(fetchAllBooks());
+  }, [dispatch])
+
   
   const getSquizedBookData = () => {
     console.log(books)

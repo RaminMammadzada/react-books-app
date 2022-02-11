@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllBookmarks } from '../../store/actions';
 import { RootState } from '../../store/reducers';
@@ -7,11 +7,12 @@ import './BookmarksPage.scss';
 
 const BookmarksPage = () => {
   const { bookmarks } = useSelector((state: RootState) => state);
+  
   const dispatch = useDispatch();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     dispatch(fetchAllBookmarks());
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="block">

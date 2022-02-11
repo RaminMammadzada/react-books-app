@@ -40,6 +40,16 @@ const addBookmarkAsync = async(data: any) => {
     return response.json()
 };
 
+const removeBookmarkAsync = async(bookId: number) => {
+    const response = await fetch(
+        `${bookmarksApi}/books/${bookId}`,
+        {
+            method: 'DELETE'
+        }
+    );
+    return response.json()
+};
+
 // const API = {
 //     getBooks: async (query: any) => {
 //       return await fetch(`${url}${query}`,);
@@ -61,6 +71,7 @@ const addBookmarkAsync = async(data: any) => {
 export {
     getBooksAsync,
     addBookmarkAsync,
-    getAllBookmarksAsync
+    getAllBookmarksAsync,
+    removeBookmarkAsync
 };
 

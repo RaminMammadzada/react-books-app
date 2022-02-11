@@ -4,7 +4,7 @@
 // });
 
 import { Book } from "../../interfaces/Book";
-import { getAllBookmarksAsync, getBooksAsync, addBookmarkAsync } from "../../util/api";
+import { getAllBookmarksAsync, getBooksAsync, addBookmarkAsync, removeBookmarkAsync } from "../../util/api";
 
 export const setAllBooks = (allBooks: any) => ({
     type: 'ALL_BOOKS',
@@ -43,6 +43,17 @@ export function addBookmark(book: Book) {
 
   return function thunk(dispatch: Function) {
     addBookmarkAsync(book)
+      .then((response) => {
+        fetchAllBookmarks();
+      })
+      .catch((error) => console.log('Error: ', error.message));
+  };
+};
+
+export function removeBookmark(bookId: number) {
+
+  return function thunk(dispatch: Function) {
+    removeBookmarkAsync(bookId)
       .then((response) => {
         fetchAllBookmarks();
       })
