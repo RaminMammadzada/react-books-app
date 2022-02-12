@@ -1,5 +1,9 @@
-.block {
+.book-block {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    
+    flex-direction: column;
+    border: 0.3rem groove;
+    margin: 0.8rem;
 }
