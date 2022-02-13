@@ -29,8 +29,7 @@ const BooksPage = () => {
     const mappedBooks = books.map((book) => (
       {
         title: book.volumeInfo.title,
-        id: book.id,
-        etag: book.etag,
+        etag: book.id,
         author: scrapeAuthors(book),
         publishedYear: book.volumeInfo.publishedDate
       }

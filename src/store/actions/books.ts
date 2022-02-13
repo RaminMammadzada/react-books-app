@@ -48,8 +48,8 @@ export function fetchAllBookmarks() {
 
 export function addBookmark(book: Book) {
 
-  return function thunk(dispatch: Function) {
-    addBookmarkAsync(
+  return async function thunk(dispatch: Function) {
+    await addBookmarkAsync(
       {
         title: book.title,
         author: book.author,

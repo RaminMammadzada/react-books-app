@@ -14,7 +14,7 @@ const BookList = ({books}: any) => {
           <h1>Type something to search</h1>
         :
           books.map((book: any) => {
-            return <Book key={book.id} book={book}/>
+            return <Book key={book.etag ?? book.id} book={book}/>
           })
       }
     </div>
