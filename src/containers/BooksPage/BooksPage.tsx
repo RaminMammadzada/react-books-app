@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Search from '../../components/Search/Search';
-import { fetchAllBooks } from '../../store/actions';
+import { fetchAllBooks } from '../../store/actions/books';
 import { RootState } from '../../store/reducers';
 import BookList from '../BookList/BookList';
 import './BooksPage.scss';

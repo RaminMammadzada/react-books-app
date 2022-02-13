@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
-import books from "./books";
-import bookmarks from "./bookmarks";
-import searchQuery from "./searchQuery";
+import booksReducer from "./books";
+import bookmarksReducer from "./bookmarks";
+import searchQueryReducer from "./searchQuery";
 
 const rootReducer = combineReducers({
-    books,
-    bookmarks,
-    searchQuery
+    books: booksReducer,
+    bookmarks: bookmarksReducer,
+    searchQuery: searchQueryReducer,
 });
 
 export default rootReducer;

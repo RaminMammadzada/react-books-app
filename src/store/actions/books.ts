@@ -4,7 +4,7 @@
 // });
 
 import { Book } from "../../interfaces/Book";
-import { getAllBookmarksAsync, getBooksAsync, addBookmarkAsync, removeBookmarkAsync } from "../../util/api";
+import { getAllBookmarksAsync, getBooksAsync, addBookmarkAsync, removeBookmarkAsync } from "../../services/booksApiService";
 
 export const setAllBooks = (allBooks: any) => ({
     type: 'ALL_BOOKS',

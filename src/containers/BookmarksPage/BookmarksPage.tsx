@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllBookmarks } from '../../store/actions';
+import { fetchAllBookmarks } from '../../store/actions/books';
 import { RootState } from '../../store/reducers';
 import BookList from '../BookList/BookList';
 import './BookmarksPage.scss';

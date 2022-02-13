@@ -1,6 +1,6 @@
 const initialValue = '';
 
-export default function searchQuery(state = initialValue, action: any) {
+const searchQueryReducer = (state = initialValue, action: any) => {
   if (action.type === 'SEARCH_QUERY') {
      return action.payload;
   }
@@ -8,5 +8,4 @@ export default function searchQuery(state = initialValue, action: any) {
   return state;
 }
 
-
-
+export default searchQueryReducer;

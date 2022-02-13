@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addBookmark, fetchAllBookmarks, removeBookmark } from '../../store/actions';
+import { addBookmark, fetchAllBookmarks, removeBookmark } from '../../store/actions/books';
 import './Book.scss';
 
 const Book = ({book}: any) => {

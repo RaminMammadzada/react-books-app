@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchQuery } from "../../store/actions";
+import { setSearchQuery } from "../../store/actions/books";
 import { RootState } from "../../store/reducers";
 
 const Search = () => {
