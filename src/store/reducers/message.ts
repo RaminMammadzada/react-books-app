@@ -2,7 +2,7 @@ import { SET_MESSAGE, CLEAR_MESSAGE } from "../constrants";
 
 const initialState = {};
 
-const message = (state = initialState, action: any) => {
+const messageReducer = (state = initialState, action: any) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -17,4 +17,4 @@ const message = (state = initialState, action: any) => {
   }
 }
 
-export default message;
+export default messageReducer;

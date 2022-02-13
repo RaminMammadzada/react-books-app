@@ -1,20 +1,26 @@
 
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'
-import Axios from 'axios';
+import Button from 'react-bootstrap/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/reducers';
+import { useNavigate } from "react-router-dom";
+import { register } from '../../store/actions/auth';;
 
 const SignupForm = (props: any) => {
-    const emptyUser = { firstNameInput: '', lastNameInput: '', usernameInput: '', emailInput: '', passwordInput: '' }
+    const emptyUser = { usernameInput: '', emailInput: '', passwordInput: '' }
     const errorMessage = 'invalid credentials'
 
     const [formData, setFormData] = useState(emptyUser)
     const [credsAreInvalid, setCredsAreInvalid] = useState('')
-    const [firstNameColor, setFirstNameColor] = useState('')
-    const [lastNameColor, setLastNameColor] = useState('')
     const [usernameColor, setUsernameColor] = useState('')
     const [emailColor, setEmailColor] = useState('')
     const [passwordColor, setPasswordColor] = useState('')
+    
+    const { message } = useSelector((state: RootState) => state);
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const handleInputChange = (event: any) => {
         event.preventDefault()
@@ -26,36 +32,22 @@ const SignupForm = (props: any) => {
         event.preventDefault()
 
         let newUser = {
-            firstName: formData.firstNameInput,
-            lastName: formData.lastNameInput,
             username: formData.usernameInput,
             email: formData.emailInput,
             password: formData.passwordInput
         }
         if (validateUserInput(newUser)) {
-            postNewUser(newUser)
-            setFormData(emptyUser)
+            console.log('registerd');
+            dispatch(register(newUser));  
+            setFormData(emptyUser);
+            navigate('/books');
         } else {
             setCredsAreInvalid(errorMessage)
         }
     }
 
-    const validateUserInput = ({ firstName, lastName, username, email, password }: any) => {
+    const validateUserInput = ({ username, email, password }: any) => {
         let isValid = true;
-
-        if (!firstName) {
-            setFirstNameColor('text-danger')
-            isValid = false;
-        } else {
-            setFirstNameColor('')
-        }
-
-        if (!lastName) {
-            setLastNameColor('text-danger')
-            isValid = false;
-        } else {
-            setLastNameColor('')
-        }
 
         if (!username) {
             setUsernameColor('text-danger')
@@ -81,25 +73,8 @@ const SignupForm = (props: any) => {
         return isValid;
     }
 
-    const postNewUser = (newUser: any) => {
-        Axios.post('http://localhost:4000/auth/signup', newUser)
-            .then(() => {
-                // props.history.push('/login')
-                console.log('registerd');
-            })
-            .catch(err => console.log(err))
-    }
-
     return (
         <Form onSubmit={handleFormSubmit}>
-            <Form.Group controlId="inputFirstName">
-                <Form.Label className={firstNameColor}>FirstName</Form.Label>
-                <Form.Control name="firstNameInput" type="text" placeholder="" value={formData.firstNameInput} onChange={handleInputChange} />
-            </Form.Group>
-            <Form.Group controlId="inputLastName">
-                <Form.Label className={lastNameColor}>LastName</Form.Label>
-                <Form.Control name="lastNameInput" type="text" placeholder="" value={formData.lastNameInput} onChange={handleInputChange} />
-            </Form.Group>
             <Form.Group controlId="username">
                 <Form.Label className={usernameColor}>Username</Form.Label>
                 <Form.Control name="usernameInput" type="text" placeholder="" value={formData.usernameInput} onChange={handleInputChange} />
@@ -116,14 +91,16 @@ const SignupForm = (props: any) => {
                 <Form.Text className="text-danger">
                     {credsAreInvalid}
                 </Form.Text>
+                <Form.Text className="text-danger">
+                    {JSON.stringify(message)}
+                </Form.Text>
             </Form.Group>
-            <Button variant="primary" type="submit">
-                Submit
+            <Button variant="primary" type="submit">Register
             </Button>
             <Button className='m-1' onClick={e => {
                 e.preventDefault();
-                props.history.push('/')
-            }}>Home</Button>
+                navigate('/login');
+            }}>Login</Button>
         </Form>
     )
 }

@@ -21,10 +21,13 @@ const Navbar = () => {
             <div className='login-logout'>
                 <ul>
                     <li>
-                        <Link to='login'>Login</Link>
+                        <Link to='login'>Log in</Link>
                     </li>
                     <li>
-                        <Link to='logouy'>Logout</Link>
+                        <Link to='logout'>Log out</Link>
+                    </li>
+                    <li>
+                        <Link to='signup'>Sign up</Link>
                     </li>
                 </ul>
             </div>
