@@ -8,15 +8,32 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    &div {
+        display: flex;
+        align-items: center;
+    }
     
     ul {
         display: inline-flex;
+        align-items: center;
     }
 
     ul li {
         display: inline;
         margin-left: 1rem;
         margin-right: 1rem;
+        a {
+            text-decoration: none;
+            padding: 0.4rem;
+        }
+
+        a:hover {
+            background-color: #7878a5;
+            padding: 0.4rem;
+            color: #ffffff;
+            border-radius: 5px;
+        }
     }
 }
 

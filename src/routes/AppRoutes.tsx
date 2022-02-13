@@ -7,6 +7,7 @@ import BookmarksPage from '../containers/BookmarksPage/BookmarksPage';
 import LoginPage from '../containers/LoginPage/LoginPage';
 import SignupPage from '../containers/SignupPage/SignupPage';
 import PrivateRoute from './PrivateRoute';
+import ProfilePage from '../containers/ProfilePage/ProfilePage';
 
 const AppRoutes = () =>{
 
@@ -33,6 +34,14 @@ const AppRoutes = () =>{
               element={
                 <PrivateRoute>
                   <BookmarksPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <PrivateRoute>
+                  <ProfilePage />
                 </PrivateRoute>
               }
             />

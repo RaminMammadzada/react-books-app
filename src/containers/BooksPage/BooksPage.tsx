@@ -14,6 +14,15 @@ const BooksPage = () => {
     dispatch(fetchAllBooks(searchQuery));
   }, [searchQuery, dispatch])
 
+  const scrapeAuthors = (book: any) => {
+    if (book.volumeInfo.authors ) {
+      if (book.volumeInfo.authors !== [] ) {
+        return book.volumeInfo.authors.join(', ');
+      }
+    }
+    
+    return 'not given';
+  }
   
   const getSquizedBookData = () => {
     console.log(books)
@@ -21,7 +30,7 @@ const BooksPage = () => {
       {
         title: book.volumeInfo.title,
         id: book.id,
-        author: 'dsadas',
+        author: scrapeAuthors(book),
         publishedYear: book.volumeInfo.publishedDate
       }
     ));
