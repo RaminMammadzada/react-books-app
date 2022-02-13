@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { addBookmark, fetchAllBookmarks, removeBookmark } from '../../store/actions/books';
@@ -20,16 +21,24 @@ const Book = ({book}: any) => {
 
   return (
     <div className="book-block">
-        <h4>{book.title}</h4>
-        <p>publish year: {book.publishedYear}</p>
-        <p>author: {book.author}</p>
-        <div className='row mr-5'>
+        <div className='details'>
+          <h4>{book.title}</h4>
+          <p>publish year: {book.publishedYear}</p>
+          <p>author: {book.author}</p>
+        </div>
+
+        <div className=''>
           {
-            location.pathname === '/books' ? <button className='mr-1' onClick={(e) => addBookToBookmarks(book)}>Add</button> : null
+            location.pathname === '/books'
+            ? <Button className='mr-1' onClick={(e) => addBookToBookmarks(book)}>Add</Button>
+            : null
           }
           {
-            location.pathname === '/bookmarks' ? <button onClick={(e) => removeBookFromBookmarks(book.id)}>Remove</button> : null
+            location.pathname === '/bookmarks'
+            ? <Button onClick={(e) => removeBookFromBookmarks(book.id)}>Remove</Button>
+            : null
           }
+          
         </div>
         <hr />
     </div>
@@ -37,14 +46,3 @@ const Book = ({book}: any) => {
 };
 
 export default Book;
-
-
-// addBookmark
-
-
-// useEffect(() => {
-//   dispatch(fetchAllBooks());
-//   dispatch(fetchAllBookmarks());
-
-// })
-

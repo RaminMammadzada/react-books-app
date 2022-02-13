@@ -30,6 +30,7 @@ const BooksPage = () => {
       {
         title: book.volumeInfo.title,
         id: book.id,
+        etag: book.etag,
         author: scrapeAuthors(book),
         publishedYear: book.volumeInfo.publishedDate
       }

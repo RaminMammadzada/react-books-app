@@ -3,9 +3,16 @@
     align-items: flex-start;
     justify-content: flex-start;
     
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     border: 0.3rem groove;
     margin: 0.8rem;
+    padding: 10px;
+
+    .details {
+        margin-right: 10px;
+    }
+
 }
 
 button {

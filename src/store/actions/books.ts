@@ -49,7 +49,13 @@ export function fetchAllBookmarks() {
 export function addBookmark(book: Book) {
 
   return function thunk(dispatch: Function) {
-    addBookmarkAsync(book)
+    addBookmarkAsync(
+      {
+        title: book.title,
+        author: book.author,
+        etag: book.etag,
+        publishedYear: book.publishedYear
+      })
       .then((response) => {
         fetchAllBookmarks();
       })
