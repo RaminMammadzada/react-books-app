@@ -45,8 +45,8 @@ export const register = ({username, email, password}: any) => (dispatch: Functio
     );
 };
 
-export const login = ({username, password}: any) => (dispatch: Function) => {
-    return AuthService.login(username, password).then(
+export const login = ({username, password}: any) => async (dispatch: Function) => {
+    return await AuthService.login(username, password).then(
         (data) => {
             dispatch({
                 type: LOGIN_SUCCESS,

@@ -33,4 +33,9 @@ const AuthService = {
   logout
 };
 
+export const isLogin = () => {
+  if (localStorage.getItem('auth')) return true;
+  return false;
+}
+
 export default AuthService;

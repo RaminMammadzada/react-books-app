@@ -27,7 +27,7 @@ const LoginForm = (props: any) => {
         setFormData({ ...formData, [name]: value });
     }
 
-    const handleFormSubmit = (event: any) => {
+    const handleFormSubmit = async (event: any) => {
         event.preventDefault()
 
         let userData = {
@@ -35,8 +35,8 @@ const LoginForm = (props: any) => {
             password: formData.passwordInput
         }
         if (validateUserInput(userData)) {
-            console.log('registerd');
-            dispatch(login(userData));
+            console.log('signed in');
+            await dispatch(login(userData));
             setFormData(emptyUser);
             navigate('/books');
         } else {
@@ -92,7 +92,7 @@ const LoginForm = (props: any) => {
                 </Form.Text>
                 <Button className='m-1' onClick={e => {
                   e.preventDefault();
-                  navigate('/login');
+                  navigate('/signup');
                 }}>Signup</Button>
             </Form.Group>
         </Form>
