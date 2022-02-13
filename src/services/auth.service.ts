@@ -9,7 +9,7 @@ const register = (username: string, email: string, password: string) => {
   });
 };
 
-const login = (username: string, password: string) => {
+const login = async (username: string, password: string) => {
   return axios
     .post(AUTH_API_URL + "signin", {
       username,

@@ -1,6 +1,6 @@
 import { SET_MESSAGE, CLEAR_MESSAGE } from "../constrants";
 
-const initialState = {};
+const initialState = {message: ''};
 
 const messageReducer = (state = initialState, action: any) => {
   const { type, payload } = action;

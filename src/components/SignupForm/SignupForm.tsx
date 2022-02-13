@@ -75,6 +75,11 @@ const SignupForm = (props: any) => {
 
     return (
         <Form onSubmit={handleFormSubmit}>
+            <Form.Group>
+                <Form.Text className="text-danger warning">
+                    {credsAreInvalid}
+                </Form.Text>
+            </Form.Group>
             <Form.Group controlId="username">
                 <Form.Label className={usernameColor}>Username</Form.Label>
                 <Form.Control name="usernameInput" type="text" placeholder="" value={formData.usernameInput} onChange={handleInputChange} />
@@ -86,14 +91,6 @@ const SignupForm = (props: any) => {
             <Form.Group controlId="inputPassword">
                 <Form.Label className={passwordColor}>Password</Form.Label>
                 <Form.Control name="passwordInput" type="password" placeholder="Password" value={formData.passwordInput} onChange={handleInputChange} />
-            </Form.Group>
-            <Form.Group>
-                <Form.Text className="text-danger">
-                    {credsAreInvalid}
-                </Form.Text>
-                <Form.Text className="text-danger">
-                    {JSON.stringify(message)}
-                </Form.Text>
             </Form.Group>
             <Button variant="primary" type="submit">Register
             </Button>

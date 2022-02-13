@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/reducers';
 import { useNavigate } from "react-router-dom";
 import { login } from '../../store/actions/auth';
+import './LoginForm.scss';
 
 const LoginForm = (props: any) => {
     const emptyUser = { usernameInput: '', passwordInput: '' }
@@ -66,6 +67,16 @@ const LoginForm = (props: any) => {
 
     return (
         <Form onSubmit={handleFormSubmit}>
+            <Form.Group>
+                <Form.Text className="text-danger warning-text">
+                    {message["message"]} 
+                </Form.Text>
+            </Form.Group>
+            <Form.Group>
+                <Form.Text className="text-danger warning-text">
+                    {credsAreInvalid}
+                </Form.Text>
+            </Form.Group>
             <Form.Group controlId="username">
                 <Form.Label className={usernameColor}>Username</Form.Label>
                 <Form.Control name="usernameInput" type="text" placeholder="" value={formData.usernameInput} onChange={handleInputChange} />
@@ -75,19 +86,11 @@ const LoginForm = (props: any) => {
                 <Form.Control name="passwordInput" type="password" placeholder="Password" value={formData.passwordInput} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group>
-                <Form.Text className="text-danger">
-                    {credsAreInvalid}
-                </Form.Text>
-                <Form.Text className="text-danger">
-                    {JSON.stringify(message)}
-                </Form.Text>
-            </Form.Group>
-            <Form.Group>
                 <Button variant="primary" type="submit">Login
                 </Button>
             </Form.Group>
             <Form.Group>
-                <Form.Text className="text-danger">
+                <Form.Text>
                     You can click also signup by clicking here.
                 </Form.Text>
                 <Button className='m-1' onClick={e => {
