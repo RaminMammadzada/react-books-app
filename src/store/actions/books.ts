@@ -4,7 +4,7 @@
 // });
 
 import { Book } from "../../interfaces/Book";
-import { getAllBookmarksAsync, getBooksAsync, addBookmarkAsync, removeBookmarkAsync } from "../../util/api";
+import { getAllBookmarksAsync, getBooksAsync, addBookmarkAsync, removeBookmarkAsync } from "../../services/booksApiService";
 
 export const setAllBooks = (allBooks: any) => ({
     type: 'ALL_BOOKS',
@@ -16,14 +16,21 @@ export const setAllBookmarks = (allBookmarks: any) => ({
   payload: allBookmarks,
 });
 
-export function fetchAllBooks() {
+export const setSearchQuery = (query: string) => ({
+  type: 'SEARCH_QUERY',
+  payload: query,
+});
+
+export function fetchAllBooks(query: string) {
 
     return function thunk(dispatch: Function) {
-      getBooksAsync('javascript')
+      if ( query.toString() !== '' ) {
+        getBooksAsync(query.toString())
         .then((response) => {
           dispatch(setAllBooks(response.items));
         })
         .catch((error) => console.log('Error: ', error.message));
+      }
     };
 };
 
@@ -41,8 +48,14 @@ export function fetchAllBookmarks() {
 
 export function addBookmark(book: Book) {
 
-  return function thunk(dispatch: Function) {
-    addBookmarkAsync(book)
+  return async function thunk(dispatch: Function) {
+    await addBookmarkAsync(
+      {
+        title: book.title,
+        author: book.author,
+        etag: book.etag,
+        publishedYear: book.publishedYear
+      })
       .then((response) => {
         fetchAllBookmarks();
       })
