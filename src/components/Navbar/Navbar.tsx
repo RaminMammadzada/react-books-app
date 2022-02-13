@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { logout } from '../../store/actions/auth';
 import { RootState } from '../../store/reducers';
 import './Navbar.scss';
@@ -10,6 +10,8 @@ const Navbar = () => {
     const currentUser = auth.user
 
     const dispatch = useDispatch();
+    
+    const location = useLocation();
 
     const logOut = useCallback(() => {
         dispatch(logout());
@@ -19,13 +21,13 @@ const Navbar = () => {
         <div className='navbar'>
             <div>
                 <ul>
-                    <li>
+                    <li className={location.pathname === '/books' ? 'active' : ''}>
                         <Link to='books'>Books</Link>
                     </li>
-                    <li>
+                    <li className={location.pathname === '/about' ? 'active' : ''}>
                         <Link to='about'>About</Link>
                     </li>
-                    <li>
+                    <li className={location.pathname === '/bookmarks' ? 'active' : ''}>
                         <Link to='bookmarks'>Bookmarks</Link>
                     </li>
                 </ul>
@@ -33,30 +35,30 @@ const Navbar = () => {
             <div className='login-logout'>
 
                 {currentUser ? (
-                    <div className="navbar-nav ml-auto">
+                    <div>
                         <ul>
-                            <li className="nav-item">
+                            <li className={location.pathname === '/profile' ? 'active' : ''}>
                                 <Link to={"/profile"} className="nav-link">
                                     {currentUser.username}
                                 </Link>
                             </li>
-                            <li className="nav-item">
+                            <li className={location.pathname === '/login' ? 'active' : ''}>
                                 <a href="/login" className="nav-link" onClick={logOut}>
-                                    LogOut
+                                    Log out
                                 </a>
                             </li>
                         </ul>
                     </div>
                 ) : (
-                    <div className="navbar-nav ml-auto">
+                    <div>
                         <ul>
-                            <li className="nav-item">
+                            <li className={location.pathname === '/login' ? 'active' : ''}>
                                 <Link to={"/login"} className="nav-link">
                                     Login
                                 </Link>
                             </li>
 
-                            <li className="nav-item">
+                            <li className={location.pathname === '/signup' ? 'active' : ''}>
                                 <Link to={"/signup"} className="nav-link">
                                     Sign Up
                                 </Link>

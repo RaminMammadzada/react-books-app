@@ -20,7 +20,7 @@ const BooksPage = () => {
     const mappedBooks = books.map((book) => (
       {
         title: book.volumeInfo.title,
-        bookIdFromGoogleApi: book.id,
+        id: book.id,
         author: 'dsadas',
         publishedYear: book.volumeInfo.publishedDate
       }

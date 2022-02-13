@@ -92,12 +92,19 @@ const SignupForm = (props: any) => {
                 <Form.Label className={passwordColor}>Password</Form.Label>
                 <Form.Control name="passwordInput" type="password" placeholder="Password" value={formData.passwordInput} onChange={handleInputChange} />
             </Form.Group>
-            <Button variant="primary" type="submit">Register
-            </Button>
-            <Button className='m-1' onClick={e => {
-                e.preventDefault();
-                navigate('/login');
-            }}>Login</Button>
+
+            <Form.Group className='mt-3 d-flex justify-content-between'>
+              <Button variant="primary" type="submit">Register</Button>
+              <div>
+                <Form.Text>
+                      Have an account already ?
+                </Form.Text>
+                <Button className='m-1' onClick={e => {
+                    e.preventDefault();
+                    navigate('/login');
+                }}>Login</Button>
+              </div>
+            </Form.Group>
         </Form>
     )
 }

@@ -68,12 +68,12 @@ const LoginForm = (props: any) => {
     return (
         <Form onSubmit={handleFormSubmit}>
             <Form.Group>
-                <Form.Text className="text-danger warning-text">
+                <Form.Text className="text-danger">
                     {message["message"]} 
                 </Form.Text>
             </Form.Group>
             <Form.Group>
-                <Form.Text className="text-danger warning-text">
+                <Form.Text className="text-danger">
                     {credsAreInvalid}
                 </Form.Text>
             </Form.Group>
@@ -85,18 +85,19 @@ const LoginForm = (props: any) => {
                 <Form.Label className={passwordColor}>Password</Form.Label>
                 <Form.Control name="passwordInput" type="password" placeholder="Password" value={formData.passwordInput} onChange={handleInputChange} />
             </Form.Group>
-            <Form.Group>
+
+            <Form.Group className='mt-3 d-flex justify-content-between'>
                 <Button variant="primary" type="submit">Login
                 </Button>
-            </Form.Group>
-            <Form.Group>
-                <Form.Text>
-                    You can click also signup by clicking here.
-                </Form.Text>
-                <Button className='m-1' onClick={e => {
-                  e.preventDefault();
-                  navigate('/signup');
-                }}>Signup</Button>
+                <div>
+                    <Form.Text>
+                        Don't you have an account ?
+                    </Form.Text>
+                    <Button className='m-1' onClick={e => {
+                        e.preventDefault();
+                        navigate('/signup');
+                    }}>Signup</Button>
+                </div>
             </Form.Group>
         </Form>
     )
