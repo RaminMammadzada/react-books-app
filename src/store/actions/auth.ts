@@ -45,7 +45,7 @@ export const register = ({username, email, password}: any) => (dispatch: Functio
     );
 };
 
-export const login = (username: string, password: string) => (dispatch: Function) => {
+export const login = ({username, password}: any) => (dispatch: Function) => {
     return AuthService.login(username, password).then(
         (data) => {
             dispatch({

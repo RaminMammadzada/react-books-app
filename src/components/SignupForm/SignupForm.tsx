@@ -38,9 +38,9 @@ const SignupForm = (props: any) => {
         }
         if (validateUserInput(newUser)) {
             console.log('registerd');
-            dispatch(register(newUser));  
+            dispatch(register(newUser));
             setFormData(emptyUser);
-            navigate('/books');
+            navigate('/login');
         } else {
             setCredsAreInvalid(errorMessage)
         }
